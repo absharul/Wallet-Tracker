@@ -1,8 +1,8 @@
+import 'package:expense_tracker/screens/analytics_screen.dart';
+import 'package:expense_tracker/screens/home_screen.dart';
+import 'package:expense_tracker/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import 'analytics_screen.dart';
-import 'home_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -14,29 +14,37 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
-  final List<Widget> _pages = [const HomeScreen(), const AnalyticsScreen()];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+  final List<Widget> _screens = [
+    const HomeScreen(),
+    const AnalyticsScreen(),
+    const SettingsScreen(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pages[_selectedIndex],
+      body: IndexedStack(index: _selectedIndex, children: _screens),
       bottomNavigationBar: NavigationBar(
         selectedIndex: _selectedIndex,
-        onDestinationSelected: _onItemTapped,
-        destinations: const <NavigationDestination>[
+        onDestinationSelected: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
+        destinations: const [
           NavigationDestination(
-            icon: Icon(FontAwesomeIcons.house),
+            icon: Icon(Icons.dashboard_outlined),
+            selectedIcon: Icon(Icons.dashboard),
             label: 'Home',
           ),
           NavigationDestination(
-            icon: Icon(FontAwesomeIcons.chartPie),
+            icon: FaIcon(FontAwesomeIcons.chartPie),
             label: 'Analytics',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.settings_outlined),
+            selectedIcon: Icon(Icons.settings),
+            label: 'Settings',
           ),
         ],
       ),

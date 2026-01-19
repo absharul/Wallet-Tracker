@@ -89,14 +89,12 @@ class TransactionListView extends StatelessWidget {
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Theme.of(
-                        context,
-                      ).colorScheme.errorContainer,
-                      foregroundColor: Theme.of(
-                        context,
-                      ).colorScheme.onErrorContainer,
+                      backgroundColor: Colors.red,
                     ),
-                    child: const Text('Delete'),
+                    child: const Text(
+                      'Delete',
+                      style: TextStyle(color: Colors.white),
+                    ),
                     onPressed: () {
                       Navigator.of(ctx).pop(true);
                     },

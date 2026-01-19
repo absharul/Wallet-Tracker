@@ -54,13 +54,19 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Dashboard'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.notifications_none_rounded),
-            onPressed: () {},
-          ),
-        ],
+        centerTitle: true,
+        title: Text(
+          'Dashboard',
+          style: Theme.of(
+            context,
+          ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+        ),
+        // actions: [
+        //   IconButton(
+        //     icon: const Icon(Icons.notifications_none_rounded),
+        //     onPressed: () {},
+        //   ),
+        // ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -87,10 +93,34 @@ class _HomeScreenState extends State<HomeScreen> {
           const Expanded(child: TransactionList()),
         ],
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => _startAddNewTransaction(context),
-        label: const Text('Add Expense'),
-        icon: const Icon(Icons.add),
+      floatingActionButton: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          gradient: LinearGradient(
+            colors: [
+              Theme.of(context).colorScheme.primary,
+              Theme.of(context).colorScheme.tertiary,
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
+              blurRadius: 8,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: FloatingActionButton.extended(
+          onPressed: () => _startAddNewTransaction(context),
+          label: const Text('Add Expense'),
+          icon: const Icon(Icons.add),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          highlightElevation: 0,
+          foregroundColor: Colors.white, // Ensure text/icon contrast
+        ),
       ),
     );
   }
