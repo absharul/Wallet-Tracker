@@ -84,6 +84,59 @@ class SettingsScreen extends StatelessWidget {
                   ),
                 ),
               ),
+              const SizedBox(height: 24),
+
+              _buildSectionHeader(context, 'Regional Preferences'),
+              Card(
+                elevation: 2,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Column(
+                  children: [
+                    ListTile(
+                      title: const Text('Currency'),
+                      subtitle: const Text('Symbol used across app'),
+                      trailing: DropdownButton<String>(
+                        value: box.get('currencySymbol', defaultValue: '\$'),
+                        underline: const SizedBox(),
+                        onChanged: (val) {
+                          if (val != null) box.put('currencySymbol', val);
+                        },
+                        items: const [
+                          DropdownMenuItem(
+                            value: '\$',
+                            child: Text('USD (\$)'),
+                          ),
+                          DropdownMenuItem(value: '€', child: Text('EUR (€)')),
+                          DropdownMenuItem(value: '£', child: Text('GBP (£)')),
+                          DropdownMenuItem(value: '₹', child: Text('INR (₹)')),
+                          DropdownMenuItem(value: '¥', child: Text('JPY (¥)')),
+                        ],
+                      ),
+                    ),
+                    // const Divider(height: 1),
+                    // ListTile(
+                    //   title: const Text('Language'),
+                    //   subtitle: const Text('App language'),
+                    //   trailing: DropdownButton<String>(
+                    //     value: box.get('languageCode', defaultValue: 'en'),
+                    //     underline: const SizedBox(),
+                    //     onChanged: (val) {
+                    //       if (val != null) box.put('languageCode', val);
+                    //     },
+                    //     items: const [
+                    //       DropdownMenuItem(value: 'en', child: Text('English')),
+                    //       DropdownMenuItem(value: 'es', child: Text('Spanish')),
+                    //       DropdownMenuItem(value: 'fr', child: Text('French')),
+                    //       DropdownMenuItem(value: 'de', child: Text('German')),
+                    //       DropdownMenuItem(value: 'hi', child: Text('Hindi')),
+                    //     ],
+                    //   ),
+                    // ),
+                  ],
+                ),
+              ),
             ],
           );
         },

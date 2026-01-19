@@ -1,6 +1,7 @@
 import 'package:expense_tracker/models/transaction.dart';
 import 'package:expense_tracker/screens/main_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -41,9 +42,24 @@ class ExpenseTrackerApp extends StatelessWidget {
             themeMode = ThemeMode.system;
         }
 
+        final String languageCode = box.get('languageCode', defaultValue: 'en');
+
         return MaterialApp(
           title: 'Expense Tracker',
           debugShowCheckedModeBanner: false,
+          locale: Locale(languageCode),
+          localizationsDelegates: const [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: const [
+            Locale('en'),
+            Locale('es'),
+            Locale('fr'),
+            Locale('de'),
+            Locale('hi'),
+          ],
           theme: ThemeData(
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(

@@ -245,7 +245,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                               ), // Assuming dark gradient, improving readability
                             ),
                             Text(
-                              '\$${filteredTransactions.fold(0.0, (sum, tx) => sum + tx.amount).toStringAsFixed(2)}',
+                              '${Hive.box('settings').get('currencySymbol', defaultValue: '\$')}${filteredTransactions.fold(0.0, (sum, tx) => sum + tx.amount).toStringAsFixed(2)}',
                               style: Theme.of(context).textTheme.titleMedium
                                   ?.copyWith(
                                     fontWeight: FontWeight.bold,

@@ -1,5 +1,6 @@
 import 'package:expense_tracker/utils/category_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 import '../models/transaction.dart';
 
@@ -10,6 +11,10 @@ class TransactionListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currency = Hive.box(
+      'settings',
+    ).get('currencySymbol', defaultValue: '\$');
+
     if (transactions.isEmpty) {
       return Center(
         child: Column(
@@ -136,7 +141,7 @@ class TransactionListView extends StatelessWidget {
               style: Theme.of(context).textTheme.bodySmall,
             ),
             trailing: Text(
-              '\$${tx.amount.toStringAsFixed(2)}',
+              '$currency${tx.amount.toStringAsFixed(2)}',
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 color: tx.category == 'Income'
                     ? Colors.green

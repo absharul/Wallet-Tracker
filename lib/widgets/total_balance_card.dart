@@ -157,7 +157,7 @@ class TotalBalanceCard extends StatelessWidget {
                             ),
                             const SizedBox(height: 8),
                             Text(
-                              '\$${totalSpending.toStringAsFixed(2)}',
+                              '${settingsBox.get('currencySymbol', defaultValue: '\$')}${totalSpending.toStringAsFixed(2)}',
                               style: Theme.of(context).textTheme.displaySmall
                                   ?.copyWith(
                                     color: Colors.white,
