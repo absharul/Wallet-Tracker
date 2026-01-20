@@ -1,5 +1,5 @@
 import 'package:expense_tracker/models/transaction.dart';
-import 'package:expense_tracker/screens/main_screen.dart';
+import 'package:expense_tracker/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -132,7 +132,7 @@ class ExpenseTrackerApp extends StatelessWidget {
             ),
           ),
           themeMode: themeMode,
-          home: const MainScreen(),
+          home: const SplashScreen(),
         );
       },
     );
