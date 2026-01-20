@@ -50,10 +50,10 @@ class _SplashScreenState extends State<SplashScreen> {
                   color: Colors.white.withOpacity(0.2),
                   shape: BoxShape.circle,
                 ),
-                child: const Icon(
-                  Icons.account_balance_wallet,
-                  size: 80,
-                  color: Colors.white,
+                child: Image.asset(
+                  'assets/app_logo.png',
+                  width: 80,
+                  height: 80,
                 ),
               ),
               const SizedBox(height: 24),
